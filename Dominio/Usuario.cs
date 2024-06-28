@@ -13,5 +13,6 @@ namespace Dominio
         public string Email { get; set; }
         public string Pass { get; set; }
         public string UrlImagenPerfil { get; set; }
+        public string Biografia { get; set; }
     }
 }
