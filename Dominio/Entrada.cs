@@ -13,5 +13,6 @@ namespace Dominio
         public string Texto { get; set; }
         public DateTime FechaCreacion { get; set; }
         public int IdUsuario { get; set; }
+        public string UrlImagenEntrada { get; set; }
     }
 }
