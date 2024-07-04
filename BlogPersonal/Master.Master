@@ -52,8 +52,12 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Miperfil.aspx">Mi Perfil</a>
                         </li>
-                    </ul>                                      
+                    </ul>  
+                    <div class="d-flex">
+                        <a class="nav-link active" aria-current="page" href="Login.aspx">Loguéate</a>
+                        <a class="nav-link active" aria-current="page" href="Registro.aspx">Regístrate</a>
                         <asp:Image ID="imagenAvatar" runat="server" style="height:40px; width:40px; border-radius:50%;"  />                    
+                    </div>
                 </div>
             </div>
         </nav>
