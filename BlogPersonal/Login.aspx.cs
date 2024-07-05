@@ -31,6 +31,11 @@ namespace BlogPersonal
                     Session.Add("usuario", usuario);
                     Response.Redirect("MiPerfil.aspx", false);
                 }
+                else
+                {
+                    lblError.Text = "Contraseña incorrecta.";
+                    lblError.Visible = true;
+                }
             }
             catch (Exception ex)
             {

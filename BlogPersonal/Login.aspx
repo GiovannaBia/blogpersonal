@@ -9,6 +9,7 @@
     <br />
      <asp:Label Text="Contraseña" runat="server" Font-Size="Larger" Font-Bold="true" />
     <asp:TextBox runat="server" ID="txtPass" CssClass="form-control"  TextMode="Password"/>
+    <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
      <br />
     <asp:Button ID="btnIngresar" runat="server" Text="Ingresar"  CssClass="btn btn-dark"  OnClick="btnIngresar_Click"/>
 </asp:Content>

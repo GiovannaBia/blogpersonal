@@ -13,17 +13,30 @@ namespace BlogPersonal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] != null && !IsPostBack)
+            {
+                EntradaLogica logica = new EntradaLogica();
+                List<Entrada> lista = logica.Listar(Request.QueryString["id"].ToString());
+                Entrada seleccionada = lista[0];
 
+                txtTitulo.Text = seleccionada.Titulo;
+                txtTexto.Text = seleccionada.Texto;
+                
+            }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Entrada nuevaEntrada = new Entrada();
-            EntradaLogica logica = new EntradaLogica();
             try
             {
+                Usuario usuario = (Usuario)Session["usuario"];
+                Entrada nuevaEntrada = new Entrada();
+                EntradaLogica logica = new EntradaLogica();
+               
+
                 nuevaEntrada.Titulo = txtTitulo.Text;
                 nuevaEntrada.Texto = txtTexto.Text;
+                nuevaEntrada.IdUsuario = usuario.Id;
                 if (txtImagen.PostedFile.FileName != "")
                 {
                     string ruta = Server.MapPath("./Imagenes/");
@@ -34,10 +47,20 @@ namespace BlogPersonal
                 {
                     nuevaEntrada.UrlImagenEntrada = null;
                 }
-                nuevaEntrada.FechaCreacion = DateTime.Now;
-                //cuando haga registro y login, cargar idusuario, guardar en sesion, etc
 
-                logica.nuevaEntrada(nuevaEntrada);
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevaEntrada.Id = int.Parse(Request.QueryString["id"]);
+                    logica.modificar(nuevaEntrada);
+                }
+                else
+                {
+                    nuevaEntrada.FechaCreacion = DateTime.Now;
+                    //cuando haga registro y login, cargar idusuario, guardar en sesion, etc
+
+                    logica.nuevaEntrada(nuevaEntrada);
+
+                }
 
                 Response.Redirect("Default.aspx", false);
                    
