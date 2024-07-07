@@ -3,33 +3,87 @@
     <style>
         .label {
             font-weight: 700;
-            font-size: larger;
+            font-size: 30px;
             margin: 20px;
         }
         .labelTexto {
-            font-size: medium;
+            font-size: 20px;
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+        .labelfav {
+            font-weight: 700;
+            font-size: 30px;
+            margin: 20px;
+        }
+          .labelTextofav {
+            font-size: 20px;
             margin-left: 20px;
             margin-bottom: 30px;
         }
         .card-link {
             position:absolute;
             bottom: 20px;
-            left: 20px;
+            left: 35px;
+            text-decoration: none;
+            background-color: #F39C12;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;  
+        }
+        .card-link:hover {
+            background-color: #FFC300;
         }
         .card {
             position:relative;
             margin: 100px;
+            padding: 20px;
         }
 
-        h3 {
+        .card h3 {
             margin: 20px;
         }
+
+        h1 {
+            margin: 40px;
+            font-size: 50px;
+        }
+
+        .containerSinSesion {
+            height: 500px;
+            margin: 100px 0 !important;
+            padding: 50px;
+            text-align: center;
+            color: #F39C12;
+            border-radius: 20px;
+            position: relative;
+            font-size: 20px;
+           
+        }
+        .btnRegistro{
+          border-radius: 10px;
+          background-color: #F39C12;
+          text-decoration: none;
+          padding: 15px;
+          color: white;
+          font-weight: 500;
+          position: absolute;
+          bottom: 70px;
+          left: 50%; 
+          transform: translateX(-50%);
+
+        }
+        .btnRegistro:hover {
+            background-color: #FFC300 ;
+        }
+
+       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Prometeo</h1>
-
-    <div class="card">  
+   
+    <% if (Logica.Seguridad.SesionActiva(Session["usuario"])) { %>
+    <div class="card sesion">  
             <asp:Label runat="server"  CssClass="label" ID="lblTitulo"></asp:Label>
             <br />
             <asp:Label runat="server"  CssClass="labelTexto" ID="lblTexto"/>
@@ -37,15 +91,27 @@
             <a href="#" class="card-link"> Leer más.. </a>        
     </div>
 
-    <div class="card">       
-            <h3>Tu entrada favorita </h3>
-            <asp:Label runat="server"  CssClass="label" ID="LabelFavorita"></asp:Label>
+    <div class="card sesion">       
+            <h3>Tu entrada favorita ❤</h3>
+            <asp:Label runat="server"  CssClass="labelfav" ID="LabelFavorita"></asp:Label>
             <br />
-            <asp:Label runat="server"  CssClass="labelTexto" ID="LabelFavoritaTexto"/>
+            <asp:Label runat="server"  CssClass="labelTextofav" ID="LabelFavoritaTexto"/>
            <br />
             <asp:Image  Visible="false" runat="server" id="img"/>
             <a href="#" class="card-link"> Leer más.. </a>        
     </div>
+    <% } %>
+
+     <% if (!Logica.Seguridad.SesionActiva(Session["usuario"]))
+         { %>
+            
+    <div class="containerSinSesion">
+        <h1>Registrate</h1>
+        <h3> Expresa a tu manera lo que quieras </h3>
+        <a href="Registro.aspx" class="btnRegistro">Registrarme</a>
+    </div>
+
+    <% } %>
 
     <div class="card text-center" style="margin: 100px;  ">
         <div class="card-header" style="background-color:#FF5733 ; font-size:20px; font-weight:500; color:white;">

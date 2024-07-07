@@ -29,11 +29,13 @@
                  color: azure;
                  font-weight: bold;
             }
+            
         </style>
     <asp:ContentPlaceHolder ID="head" runat="server">       
     </asp:ContentPlaceHolder>
 </head>
 <body>
+           >
     <form id="form1" runat="server">
  
         <nav class="navbar navbar-expand-lg nav-div" style="background-color: #FFC300; font-weight:bold;">
@@ -71,7 +73,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container" style="width:100%; margin:auto;">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
             </asp:ContentPlaceHolder>
