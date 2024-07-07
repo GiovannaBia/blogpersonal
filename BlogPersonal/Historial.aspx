@@ -9,13 +9,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Historial de Entradas</h1>
 
-    <asp:GridView runat="server" ID="dgvEntradas" CssClass="table table-dark"  AutoGenerateColumns="false"  OnSelectedIndexChanged="dgvEntradas_SelectedIndexChanged"  DataKeyNames="Id" >
+    <asp:GridView runat="server" ID="dgvEntradas" CssClass="table table-dark" AutoGenerateColumns="false" OnRowCommand="dgvEntradas_RowCommand" DataKeyNames="Id">
         <Columns>
-            <asp:BoundField HeaderText="Id" DataField="Id"  ItemStyle-CssClass="oculto"/>
             <asp:BoundField HeaderText="Titulo" DataField="Titulo" />
             <asp:BoundField HeaderText="Fecha de creación" DataField="FechaCreacion" />
             <asp:BoundField HeaderText="Texto" DataField="Texto"  />
-            <asp:CommandField  HeaderText="Editar"  SelectText="✍" ShowSelectButton="true"/>
+            <asp:ButtonField HeaderText="Editar"  Text="✍" CommandName="Editar" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Agregar a favoritos" Text="❤" CommandName="AgregarFavoritos" ButtonType="Button"/>
+
         </Columns> 
     </asp:GridView>
 </asp:Content>

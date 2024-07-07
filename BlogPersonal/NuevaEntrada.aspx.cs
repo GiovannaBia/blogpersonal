@@ -40,8 +40,8 @@ namespace BlogPersonal
                 if (txtImagen.PostedFile.FileName != "")
                 {
                     string ruta = Server.MapPath("./Imagenes/");
-                    txtImagen.PostedFile.SaveAs(ruta + "perfil-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + ".jpg");
-                    nuevaEntrada.UrlImagenEntrada = "perfil-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + ".jpg";
+                    txtImagen.PostedFile.SaveAs(ruta + "perfil-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + DateTime.Now.Ticks + ".jpg");
+                    nuevaEntrada.UrlImagenEntrada = "perfil-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + DateTime.Now.Ticks + ".jpg";
                 }
                 else
                 {
