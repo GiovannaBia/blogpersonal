@@ -19,6 +19,11 @@ namespace BlogPersonal
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            if (txtPass.Text != txtPass2.Text)
+            {
+                lblValida.Visible = true;
+                return;
+            }
             Usuario usuario = new Usuario();
             UsuarioLogica logica = new UsuarioLogica();
             try
@@ -42,6 +47,22 @@ namespace BlogPersonal
             {
                 throw ex;
             }
+        }
+
+        protected void txtPass2_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPass.Text != txtPass2.Text)
+            {
+                lblValida.Visible = true;
+                btnIngresar.Enabled = false;
+            }
+            else
+            {
+                lblValida.Visible = false;
+                btnIngresar.Enabled = true;
+            }
+            txtPass.Attributes["value"] = txtPass.Text;
+            txtPass2.Attributes["value"] = txtPass2.Text;
         }
     }
 }

@@ -13,33 +13,44 @@ namespace BlogPersonal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Logica.Seguridad.SesionActiva(Session["usuario"]))
+            
             {
-                Usuario usuario = (Usuario)Session["usuario"];
-                List<Entrada> entradas = new List<Entrada>();
-                EntradaLogica logica = new EntradaLogica();
-                entradas = logica.ListarPorUsuario(usuario.Id);
-                Entrada ultima = entradas[entradas.Count - 1];
-
-                lblTitulo.Text = ultima.Titulo;
-                lblTexto.Text = ultima.Texto;
-
-                if (Request.QueryString["id"] != null)
+                if (Logica.Seguridad.SesionActiva(Session["usuario"]))
                 {
-                    int id = int.Parse(Request.QueryString["id"].ToString());
-                    Entrada entrada = logica.CargarEntrada(id);
-                    LabelFavorita.Text = entrada.Titulo;
-                    LabelFavoritaTexto.Text = entrada.Texto;
-                    if (entrada.UrlImagenEntrada != null)
+                    Usuario usuario = (Usuario)Session["usuario"];
+                    List<Entrada> entradas = new List<Entrada>();
+                    EntradaLogica logica = new EntradaLogica();
+                    entradas = logica.ListarPorUsuario(usuario.Id);
+
+                    if (entradas.Count > 0)
                     {
-                        img.Visible = true;
-                        img.ImageUrl = entrada.UrlImagenEntrada;
+                        Entrada ultima = entradas[entradas.Count - 1];
+                        lblTitulo.Text = ultima.Titulo;
+                        lblTexto.Text = ultima.ResumenTexto;
+
+                        if (Request.QueryString["id"] != null)
+                        {
+                            int id = int.Parse(Request.QueryString["id"].ToString());
+                            Entrada entrada = logica.CargarEntrada(id);
+                            LabelFavorita.Text = entrada.Titulo;
+                            LabelFavoritaTexto.Text = entrada.ResumenTexto;
+                            if (entrada.UrlImagenEntrada != null)
+                            {
+                                img.Visible = true;
+                                img.ImageUrl = entrada.UrlImagenEntrada;
+                            }
+                        }
                     }
-
+                    else
+                    {
+                        // Para Ocultar la card si no hay entradas
+                        cardUltimaEntrada.Visible = false;
+                    }
                 }
-
-                
             }
+
+
         }
+
     }
 }

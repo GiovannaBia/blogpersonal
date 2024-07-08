@@ -26,13 +26,14 @@
             bottom: 20px;
             left: 35px;
             text-decoration: none;
-            background-color: #F39C12;
+            width: 100px;
+            background-color: #C70039;
             border-radius: 10px;
             padding: 10px;
             color: white;  
         }
         .card-link:hover {
-            background-color: #FFC300;
+            background-color: #D5164D;
         }
         .card {
             position:relative;
@@ -51,10 +52,10 @@
 
         .containerSinSesion {
             height: 500px;
-            margin: 100px 0 !important;
+            margin: 90px 0 !important;
             padding: 50px;
             text-align: center;
-            color: #F39C12;
+            color: #C70039;
             border-radius: 20px;
             position: relative;
             font-size: 20px;
@@ -62,7 +63,7 @@
         }
         .btnRegistro{
           border-radius: 10px;
-          background-color: #F39C12;
+          background-color: #C70039;
           text-decoration: none;
           padding: 15px;
           color: white;
@@ -74,7 +75,7 @@
 
         }
         .btnRegistro:hover {
-            background-color: #FFC300 ;
+            background-color: #D5164D ;
         }
 
        
@@ -83,12 +84,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
     <% if (Logica.Seguridad.SesionActiva(Session["usuario"])) { %>
-    <div class="card sesion">  
+    <div class="card sesion" id="cardUltimaEntrada" runat="server">  
             <asp:Label runat="server"  CssClass="label" ID="lblTitulo"></asp:Label>
             <br />
             <asp:Label runat="server"  CssClass="labelTexto" ID="lblTexto"/>
            <br />
-            <a href="#" class="card-link"> Leer más.. </a>        
+            <a href="Prometeo.aspx" class="card-link btn" > Leer más.. </a>        
     </div>
 
     <div class="card sesion">       
@@ -98,7 +99,7 @@
             <asp:Label runat="server"  CssClass="labelTextofav" ID="LabelFavoritaTexto"/>
            <br />
             <asp:Image  Visible="false" runat="server" id="img"/>
-            <a href="#" class="card-link"> Leer más.. </a>        
+            <a href="Prometeo.aspx" class="card-link btn"> Leer más.. </a>        
     </div>
     <% } %>
 
@@ -122,5 +123,5 @@
             <p class="card-text">Cuéntanos tus reflexiones.</p>
             <a href="NuevaEntrada.aspx" class="btn" style="background-color: #C70039; font-size: 15px; font-weight:600; color:white;">Nueva entrada</a>
         </div>
-</div>
+    </div>
 </asp:Content>

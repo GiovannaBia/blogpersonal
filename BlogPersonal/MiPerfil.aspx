@@ -10,7 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container" style="width:100%; ">
+    <div class="container" style="width: 100%; margin: 0; padding: 0 ; ">
 
         <h1>Mi perfil</h1>
         <br />
