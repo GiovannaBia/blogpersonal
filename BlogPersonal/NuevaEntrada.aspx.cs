@@ -21,7 +21,9 @@ namespace BlogPersonal
 
                 txtTitulo.Text = seleccionada.Titulo;
                 txtTexto.Text = seleccionada.Texto;
-                
+                imgNuevoPerfil.ImageUrl = "~/Imagenes/" + seleccionada.UrlImagenEntrada;
+
+
             }
         }
 
@@ -40,9 +42,9 @@ namespace BlogPersonal
                 if (txtImagen.PostedFile.FileName != "")
                 {
                     string ruta = Server.MapPath("./Imagenes/");
-                    string fileName = "perfil-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + DateTime.Now.Ticks + ".jpg";
+                    string fileName = "entrada-" + nuevaEntrada.Id + "-" + nuevaEntrada.Titulo + DateTime.Now.Ticks + ".jpg";
                     txtImagen.PostedFile.SaveAs(ruta + fileName);
-                    nuevaEntrada.UrlImagenEntrada =  "~/Imagenes/" + fileName;
+                    nuevaEntrada.UrlImagenEntrada = fileName;
                 }
                 else
                 {
@@ -57,7 +59,7 @@ namespace BlogPersonal
                 else
                 {
                     nuevaEntrada.FechaCreacion = DateTime.Now;
-                    //cuando haga registro y login, cargar idusuario, guardar en sesion, etc
+                   
 
                     logica.nuevaEntrada(nuevaEntrada);
 
